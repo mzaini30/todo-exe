@@ -4,8 +4,8 @@
   import shopee from "./shopee.yaml";
 
   let todo = [];
-  let baru;
-  let status;
+  let baru = "";
+  let status = "";
 
   async function init() {
     let dapatkanTodo = await localforage.getItem("todo");
