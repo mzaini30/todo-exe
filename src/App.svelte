@@ -5,6 +5,7 @@
 
   let todo = [];
   let baru;
+  let status;
 
   async function init() {
     let dapatkanTodo = await localforage.getItem("todo");
@@ -20,10 +21,12 @@
       {
         id: crypto.randomUUID(),
         todo: baru,
+        status,
       },
     ];
     await localforage.setItem("todo", todo);
     baru = "";
+    status = "";
   }
 
   async function hapus(id) {
@@ -37,14 +40,35 @@
 <form on:submit|preventDefault={tambahBaru} action="">
   <label for="">TODO Baru</label>
   <input bind:value={baru} type="text" required />
+  <label for="">Status</label>
+  <select bind:value={status} name="" required id="">
+    <option value="kerjaanBaru">Kerjaan Baru</option>
+    <option value="revisi">Revisi</option>
+  </select>
+  <input type="submit" value="Tambahkan" />
 </form>
 
+<h2>Revisi</h2>
 <ol>
   {#each acak(todo) as item}
-    <li>
-      <span> {item.todo}</span>
-      <a on:click|preventDefault={() => hapus(item.id)} href="/">Selesai</a>
-    </li>
+    {#if item.status == "revisi"}
+      <li>
+        <span> {item.todo}</span>
+        <a on:click|preventDefault={() => hapus(item.id)} href="/">Selesai</a>
+      </li>
+    {/if}
+  {/each}
+</ol>
+
+<h2>Kerjaan Baru</h2>
+<ol>
+  {#each acak(todo) as item}
+    {#if item.status == "kerjaanBaru"}
+      <li>
+        <span> {item.todo}</span>
+        <a on:click|preventDefault={() => hapus(item.id)} href="/">Selesai</a>
+      </li>
+    {/if}
   {/each}
 </ol>
 
