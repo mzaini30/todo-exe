@@ -49,7 +49,7 @@
 </form>
 
 <h2>Revisi</h2>
-<ol>
+<ol class="item">
   {#each acak(todo) as item}
     {#if item.status == "revisi"}
       <li>
@@ -61,7 +61,7 @@
 </ol>
 
 <h2>Kerjaan Baru</h2>
-<ol>
+<ol class="item">
   {#each acak(todo) as item}
     {#if item.status == "kerjaanBaru"}
       <li>
@@ -81,3 +81,13 @@
     </a>
   </p>
 {/each}
+
+<style>
+  @media (max-width: 450px) {
+    ol.item > * + * {
+      margin-top: 20px;
+    }
+    ol.item {
+    }
+  }
+</style>
