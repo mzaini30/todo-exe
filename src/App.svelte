@@ -2,6 +2,7 @@
   import localforage from "localforage";
   import { acak } from "kumpulan-tools";
   import shopee from "./shopee.yaml";
+  import Whatsapp from "./icon/whatsapp.svelte";
 
   let todo = [];
   let baru = "";
@@ -82,6 +83,14 @@
   </p>
 {/each}
 
+<a
+  href="https://chat.whatsapp.com/B6gUdBiQU4U7Yi2rsQcwV5"
+  target="_blank"
+  class="wa"
+>
+  <Whatsapp></Whatsapp>
+</a>
+
 <style>
   @media (max-width: 450px) {
     ol.item > * + * {
@@ -89,5 +98,12 @@
     }
     ol.item {
     }
+  }
+  a.wa {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+  }
+  a.wa.s-XsEmFtvddWTw {
   }
 </style>
